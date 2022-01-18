@@ -1,85 +1,94 @@
-# Desafio programação - para vaga desenvolvedor
+# Desafio ByCoders
 
-Por favor leiam este documento do começo ao fim, com muita atenção.
-O intuito deste teste é avaliar seus conhecimentos técnicos em programação.
-O teste consiste em parsear [este arquivo de texto(CNAB)](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt) e salvar suas informações(transações financeiras) em uma base de dados a critério do candidato.
-Este desafio deve ser feito por você em sua casa. Gaste o tempo que você quiser, porém normalmente você não deve precisar de mais do que algumas horas.
+Desenvolvedor: Igor Gabriel Marques de Souza
+E-mail: igor@cadenzatecnologia.com.br
 
-# Instruções de entrega do desafio
+## 👨‍💻 Tech
 
-1. Primeiro, faça um fork deste projeto para sua conta no Github (crie uma se você não possuir).
-2. Em seguida, implemente o projeto tal qual descrito abaixo, em seu clone local.
-3. Por fim, envie via email o projeto ou o fork/link do projeto para seu contato Bycoders_ com cópia para rh@bycoders.com.br.
+#### Backend (API)
+- Node
+- PostgreSQL 13.1
+(Dependências diretas: sequelize, jwt, bcrypt, express, axios, react, router)
+#### Frontend
+- React.js
+- HTML
+- CSS3
+##
+### Começar
 
-# Descrição do projeto
+É necessário instalar na máquina o node.js & postgresql antes de utilizar. O sistema funciona melhor em maquinas linux.
 
-Você recebeu um arquivo CNAB com os dados das movimentações finanaceira de várias lojas.
-Precisamos criar uma maneira para que estes dados sejam importados para um banco de dados.
+- [Node](https://nodejs.org/)
+- [Postgre](https://www.postgresql.org/download/)
 
-Sua tarefa é criar uma interface web que aceite upload do [arquivo CNAB](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt), normalize os dados e armazene-os em um banco de dados relacional e exiba essas informações em tela.
+## Instalação
+Indico utilizar o Docker.
+### Docker composer
+```docker-compose up --build -d```
 
-**Sua aplicação web DEVE:**
+### Configure o .env
+Defina os valores das variáveis: *db_host*, *db_port*, *db_username* & *db_password*
 
-1. Ter uma tela (via um formulário) para fazer o upload do arquivo(pontos extras se não usar um popular CSS Framework )
-2. Interpretar ("parsear") o arquivo recebido, normalizar os dados, e salvar corretamente a informação em um banco de dados relacional, **se atente as documentações** que estão logo abaixo.
-3. Exibir uma lista das operações importadas por lojas, e nesta lista deve conter um totalizador do saldo em conta
-4. Ser escrita na sua linguagem de programação de preferência
-5. Ser simples de configurar e rodar, funcionando em ambiente compatível com Unix (Linux ou Mac OS X). Ela deve utilizar apenas linguagens e bibliotecas livres ou gratuitas.
-6. Git com commits atomicos e bem descritos
-7. PostgreSQL, MySQL ou SQL Server
-8. Ter testes automatizados
-9. Docker compose (Pontos extras se utilizar)
-10. Readme file descrevendo bem o projeto e seu setup
-11. Incluir informação descrevendo como consumir o endpoint da API
+- Não vai utilizar Docker?
+Converta o script localizado no dbScript/script.sh para sql, apenas copiando o comando completo.
 
-**Sua aplicação web não precisa:**
+## Executar o projeto manualmente
 
-1. Lidar com autenticação ou autorização (pontos extras se ela fizer, mais pontos extras se a autenticação for feita via OAuth).
-2. Ser escrita usando algum framework específico (mas não há nada errado em usá-los também, use o que achar melhor).
-3. Documentação da api.(Será um diferencial e pontos extras se fizer)
+### API
+O servidor está configurado para a porta 5000.
 
-# Documentação do CNAB
+Iniciando a API:
 
-| Descrição do campo  | Inicio | Fim | Tamanho | Comentário
-| ------------- | ------------- | -----| ---- | ------
-| Tipo  | 1  | 1 | 1 | Tipo da transação
-| Data  | 2  | 9 | 8 | Data da ocorrência
-| Valor | 10 | 19 | 10 | Valor da movimentação. *Obs.* O valor encontrado no arquivo precisa ser divido por cem(valor / 100.00) para normalizá-lo.
-| CPF | 20 | 30 | 11 | CPF do beneficiário
-| Cartão | 31 | 42 | 12 | Cartão utilizado na transação 
-| Hora  | 43 | 48 | 6 | Hora da ocorrência atendendo ao fuso de UTC-3
-| Dono da loja | 49 | 62 | 14 | Nome do representante da loja
-| Nome loja | 63 | 81 | 19 | Nome da loja
+```
+cd api
 
-# Documentação sobre os tipos das transações
+# Certifique-se de instalar as dependências do servidor.
 
-| Tipo | Descrição | Natureza | Sinal |
-| ---- | -------- | --------- | ----- |
-| 1 | Débito | Entrada | + |
-| 2 | Boleto | Saída | - |
-| 3 | Financiamento | Saída | - |
-| 4 | Crédito | Entrada | + |
-| 5 | Recebimento Empréstimo | Entrada | + |
-| 6 | Vendas | Entrada | + |
-| 7 | Recebimento TED | Entrada | + |
-| 8 | Recebimento DOC | Entrada | + |
-| 9 | Aluguel | Saída | - |
+npm start #ou node ./index.js
+```
 
-# Avaliação
+## Documentação API
+#### Autenticação
+- *`POST` `/api/login`* (logon)
+- *`POST` `/api/signup`* (signup)
 
-Seu projeto será avaliado de acordo com os seguintes critérios.
+#### Lojas
+OBS: para utilizar as seções de API abaixo, você precisar estar autenticado com login, que irá gerar um token via retorno 200, utilize-o na /oapi, caso contrário irá retornar mensagem de erro.
+- *`GET` `/oapi/shops`* (shop list)
 
-1. Sua aplicação preenche os requerimentos básicos?
-2. Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
-3. Você seguiu as instruções de envio do desafio?
-4. Qualidade e cobertura dos testes unitários.
+#### Transações
+- *`GET` `/oapi/transactions`* (transaction list)
+- *`GET` `/oapi/transactions?shop_id=...`* (transaction of a unique shop)
+- *`POST` `/oapi/transactions`* (save a CNAB file)
 
-Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas padrões (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
+#### Tipos de transações
+- *`GET` `/oapi/transactions-types`* (saved transaction types list)
 
-# Referência
+### Web
+A aplicação está configurada para a porta 3000.
 
-Este desafio foi baseado neste outro desafio: https://github.com/lschallenges/data-engineering
+Iniciando o WEB React:
 
----
+```
+cd web
 
-Boa sorte!
+# Certifique-se de instalar as dependências do app.
+
+npm start #ou node ./index.js
+```
+
+
+### Testes automatizados
+Inicie normalmente e execute os comandos abaixo:
+
+```
+# Certifique-se de instalar as dependências do app & api.
+
+npm test
+```
+
+
+
+
+
+

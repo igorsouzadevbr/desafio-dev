@@ -1,0 +1,324 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+
+
+.App {
+  text-align: center;
+  background-color: #000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 1vmin);
+  
+}
+
+.input-cep {
+  padding: 12px 20px;
+  margin: 20px 10px 5px 10px;
+  font-size: 1rem;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 6px;
+  text-align: center;
+  outline: transparent;
+  width: 30%;
+}
+
+@media (max-width: 800px) {
+  .input-cep {
+    width: 50%;
+  }
+}
+
+@media (max-width: 300px) {
+  .input-cep {
+    width: 80%;
+  }
+}
+
+.file {
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-input {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-input label {
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+}
+
+.file-input label.disabled {
+  background-color: #c3dacd;
+  cursor: not-allowed;
+}
+
+.file-name {
+  position: absolute;
+  bottom: -35px;
+  left: 10px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+input:hover + label,
+input:focus + label {
+  transform: scale(1.02);
+}
+
+/* Adding an outline to the label on focus */
+input:focus + label {
+  outline: 1px solid #000;
+  outline: -webkit-focus-ring-color auto 2px;
+}
+
+.btn {
+  margin-top: 15px;
+  background-color: #fff;
+  color: #121212;
+  width: 100%;
+  min-height: 52px;
+  max-width: 387px;
+  padding: 18px 24px;
+  font-size: 15px;
+  transition: background-color .25s;
+    border-radius: 4px;
+    cursor: pointer;
+    word-wrap: break-word;
+  text-transform: none;
+
+}
+
+.appHeader {
+  width: 100%;
+  padding: 1.3em;
+  background-color: #01040a;
+}
+
+.pTitle {
+  text-align: center;
+  font-weight: bold;
+  color:white;
+}
+.sTitle {
+  text-align: center;
+  display: block;
+  margin: auto;
+  font-weight: bold;
+  color:white;
+}
+
+.appHeader > ul {
+  display: block;
+  list-style-type: none;
+  margin: auto;
+  padding: 0;
+}
+
+.appHeader > ul > li {
+  font-weight: 600;
+  display: inline;
+  padding-left: 30px;
+}
+.appHeader > ul > li > a {
+  color: #fff;
+}
+
+.appHeader > ul > li > a:visited {
+  color: #fff;
+}
+
+.appHeader > ul > li > a:hover {
+  color: #eee;
+}
+
+.linkNav {
+  text-transform: lowercase;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #CCCCCC;
+  color: #121212;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.btn.disabled {
+  background: #fff;
+  color: #121212;
+  cursor: not-allowed;
+}
+
+.table {
+  margin: 0 0 40px 0;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  display: table;
+  background-color: #fff;
+  border-radius: 30px;
+}
+
+@media screen and (max-width: 580px) {
+  .table {
+    display: block;
+    border-radius: 30px;
+  }
+}
+
+.table > thead > tr, .table > tfoot {
+  color: black;
+  background: #E9EBEF;
+  padding: 6px;
+  border-radius: 30px;
+}
+
+.table > tbody > tr {
+  display: table-row;
+  background: #f6f6f6;
+  border-radius: 30px;
+  padding: 8px;
+  
+}
+
+.table > tbody > tr:nth-of-type(odd) {
+  background: #fffefe86;
+  border-radius: 30px;
+}
+
+th, td {
+  padding: 6px 8px;
+}
+
+@media screen and (max-width: 580px) {
+  .table > tbody > tr {
+    padding: 14px 0 7px;
+    display: block;
+    border-radius: 30px;
+  }
+}
+
+.success-text {
+  color: #27b376;
+}
+
+.error-text {
+  color: #fe2e2e;
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+  padding: 4% 8%;
+  background-color: #0000;
+}
+
+.not-found {
+  border: 2px dashed #455f78;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.title {
+  color: #fff;
+}
+
+.login-form {
+ 
+}
+
+.btnC {
+  width: 384px;
+}
+
+.contentLogo {
+  display: block;
+  margin:auto;
+    width: 100%;
+    max-width: 150px;
+    margin-bottom: 50px;
+}
+
+@font-face {
+  font-family: 'ModeratRegular';
+  src: local('../fonts/ModeratRegular.ttf'), url(../fonts/ModeratRegular.ttf) format('truetype');
+}
+
+.inputForm {
+  display: block;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  border: 0;
+  padding-bottom: 5px;
+  outline: none;
+  background: transparent;
+  color: #121212;
+  font-size: 15px;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+    transition: background-color 5000s ease-in-out 0s;
+    background-color: #000;
+    font-family: 'ModeratRegular';
+    font-size: 15px;
+    -webkit-text-fill-color: #f6f7f8;
+    padding-right: 35px;
+    border-bottom: 2px solid #c1c5d0;
+    color: #c1c5d0;
+    width: 100%;
+    height: 55px;
+    color: #c1c5d0;
+    font-weight: 400;
+    cursor: text;
+}
+
+.formLabel {
+    display: block;
+    text-align: left;
+    transform: translateY(8px);
+    transition: .4s;
+    color: white;
+    font-size: 15px;
+    line-height: 125%;
+    white-space: nowrap;
+    z-index: 1;
+    will-change: transform,font-size;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.formContent {
+  
+  display: block;
+  margin: auto;
+  width: 100%;
+    max-width: 384px;
+    margin: 0 auto;
+    color: #fff;
+    
+}

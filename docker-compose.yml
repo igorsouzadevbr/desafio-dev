@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  api:
+    env_file: ./api/.env
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    command: node ./index.js
+    volumes:
+      - ./api:/home/node/api
+      - /home/node/api/node_modules
+    depends_on:
+      - db
+    networks:
+      - app-connect
+    ports:
+      - '5000:5000'
+
+  db:
+    image: postgres:13.1
+    healthcheck:
+      test: [ 'CMD', 'pg_isready', '-q', '-d', 'postgres', '-U', 'postgres' ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=padrao
+      - APP_DB_NAME=desafiobc
+    volumes:
+      - ./api/dbScript:/docker-entrypoint-initdb.d/
+    ports:
+      - 5433:5432
+    networks:
+      - app-connect
+  
+  web:
+    build:
+      context: ./web
+      dockerfile: ./Dockerfile
+    command: npm start
+    volumes:
+      - ./web:/home/web
+      - /home/web/node_modules
+    depends_on:
+      - api
+    networks:
+      - app-connect
+    ports:
+      - '3000:3000'
+
+networks:
+  app-connect:
+      driver: bridge

@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'ModeratMedium';
+  src: local('./assets/fonts/ModeratMedium.ttf'), url(./assets/fonts/ModeratMedium.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+body {
+  margin: 0;
+  font-family: 'ModeratMedium';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
